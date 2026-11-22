@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>আশীর্বাদ বার্তা</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  body{ background:var(--paper); }
+  .admin{ max-width:640px; margin:0 auto; padding:40px 20px 60px; }
+  .admin h1{ font-family:"Galada",serif; font-weight:400; color:var(--sindoor); font-size:32px; line-height:1.5; text-align:center; }
+  .admin .sub{ text-align:center; color:var(--ink-soft); font-size:15px; }
+  .panel{ margin-top:26px; padding:22px; border-radius:16px; background:#fff; box-shadow:0 0 0 1px rgba(201,160,78,.6); }
+  .panel label{ display:block; font-weight:600; color:var(--sindoor); font-size:15px; margin-bottom:6px; }
+  .panel input{ width:100%; font:16px/1.6 var(--text); padding:11px 14px; border-radius:12px; border:1px solid rgba(201,160,78,.75); }
+  .row{ display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+  .msg{ padding:16px 0; border-bottom:1px solid rgba(201,160,78,.35); }
+  .msg:last-child{ border-bottom:0; }
+  .msg-head{ display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+  .msg-name{ font-weight:600; color:var(--sindoor); }
+  .msg-time{ color:var(--ink-soft); font-size:13.5px; }
+  .msg-text{ white-space:pre-wrap; margin-top:4px; line-height:1.8; overflow-wrap:anywhere; }
+  .msg-side{ display:inline-block; font-size:12.5px; color:var(--ink-soft); border:1px solid rgba(201,160,78,.6); border-radius:999px; padding:0 8px; margin-left:6px; }
+  .del{ border:0; background:none; color:var(--alta); font:14px var(--text); cursor:pointer; padding:4px 0; }
+  .link{ border:0; background:none; color:var(--sindoor); text-decoration:underline; font:15px var(--text); cursor:pointer; }
+  .note{ margin-top:12px; font-size:15px; line-height:1.7; }
+  .note.err{ color:var(--alta); } .note.ok{ color:#2E6B3A; }
+  .count{ color:var(--ink-soft); font-size:15px; }
+  [hidden]{ display:none !important; }
+</style>
+<script src="config.js"></script>
+<script src="vendor/supabase.js"></script>
+</head>
+<body>
+<main class="admin">
+  <h1>আশীর্বাদ বার্তা</h1>
+  <p class="sub">অতিথিদের পাঠানো শুভেচ্ছা। শুধু অনুমতিপ্রাপ্ত ইমেলে লগইন করা যাবে।</p>
+
+  <section class="panel" id="loginPanel" hidden>
+    <form id="loginForm">
+      <label for="email">আপনার ইমেল</label>
+      <input id="email" type="email" autocomplete="email" required>
+      <button class="btn" type="submit" id="loginBtn">লগইন লিঙ্ক পাঠান</button>
+    </form>
+    <p class="note" id="loginNote" role="status"></p>
+  </section>
+
+  <section class="panel" id="listPanel" hidden>
+    <div class="row">
+      <span class="count" id="count"></span>
+      <span><button class="link" id="refresh" type="button">আবার লোড করুন</button> &nbsp; <button class="link" id="logout" type="button">লগআউট</button></span>
+    </div>
+    <label class="row" style="justify-content:flex-start;margin-top:12px;font-weight:400;color:var(--ink);font-size:15px">
+      <input type="checkbox" id="bothSides" style="width:auto"> দুই পক্ষের বার্তাই দেখান
+    </label>
+    <p class="note" id="listNote" role="status"></p>
+    <div id="list"></div>
+  </section>
+</main>
+<script src="admin.js"></script>
+</body>
+</html>

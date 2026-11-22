@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#3E0816">
+<meta name="robots" content="noindex, nofollow">
+<title>অভিষেক ও বৈশালী</title>
+<meta name="description" content="অভিষেক ও বৈশালীর শুভ বিবাহের আমন্ত্রণ">
+<meta property="og:type" content="website">
+<meta property="og:title" content="অভিষেক ও বৈশালী — শুভ বিবাহের আমন্ত্রণ">
+<meta property="og:description" content="আপনাকে সাদর আমন্ত্রণ জানাই। খামটি খুলুন।">
+<meta property="og:image" content="https://wedding-groom.pages.dev/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<link rel="icon" href="img/om-icon.webp" type="image/webp">
+<link rel="preload" href="fonts/galada-bengali-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/noto-serif-bengali-bengali-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/wax-stamp.webp" as="image">
+<link rel="stylesheet" href="styles.css">
+<script src="config.js"></script>
+</head>
+<body class="is-closed">
+
+<!-- ================= Envelope ================= -->
+<section class="stage" id="stage" aria-label="আমন্ত্রণ পত্রের খাম">
+  <div class="envelope" id="envelope">
+    <div class="env-back" aria-hidden="true"></div>
+    <div class="env-card" aria-hidden="true">
+      <img src="img/ganesh-line.webp" alt="">
+      <span class="env-card-names">অভিষেক ও বৈশালী</span>
+    </div>
+    <svg class="env-pocket" viewBox="0 0 400 280" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="pk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3E4C6"/><stop offset="1" stop-color="#E9D3A8"/></linearGradient>
+        <linearGradient id="pkL" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#EEDDBB"/><stop offset="1" stop-color="#F6EAD2"/></linearGradient>
+      </defs>
+      <path d="M0 0 L200 150 L0 280 Z" fill="url(#pkL)"/>
+      <path d="M400 0 L200 150 L400 280 Z" fill="url(#pkL)"/>
+      <path d="M0 280 L200 128 L400 280 Z" fill="url(#pk)"/>
+      <path d="M0 280 L200 128 L400 280" fill="none" stroke="#C9A04E" stroke-opacity=".45" stroke-width="1"/>
+    </svg>
+    <div class="env-flap" id="envFlap" aria-hidden="true">
+      <svg viewBox="0 0 400 170" preserveAspectRatio="none">
+        <defs><linearGradient id="fl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7ECD6"/><stop offset="1" stop-color="#EAD5AC"/></linearGradient></defs>
+        <path d="M0 0 H400 L214 160 Q200 172 186 160 Z" fill="url(#fl)"/>
+        <path d="M0 0 L186 160 Q200 172 214 160 L400 0" fill="none" stroke="#C9A04E" stroke-opacity=".55" stroke-width="1.2"/>
+      </svg>
+      <p class="env-title">শ্রী শ্রী প্রজাপতয়ে নমঃ</p>
+    </div>
+    <div class="seal" id="seal" aria-hidden="true">
+      <img class="seal-l" src="img/wax-stamp.webp" alt="">
+      <img class="seal-r" src="img/wax-stamp.webp" alt="">
+    </div>
+  </div>
+  <button class="open-btn" id="openBtn" type="button">
+    <span data-i="openCta">অনুগ্রহ করে আমন্ত্রণ পত্র গ্রহণ করুন</span>
+    <small data-i="openHint">সিলমোহরে ছুঁয়ে খুলুন</small>
+  </button>
+</section>
+
+<!-- ================= Card ================= -->
+<div class="lang" id="lang" role="group" aria-label="ভাষা">
+  <button type="button" data-lang="bn" aria-pressed="true">বাংলা</button>
+  <button type="button" data-lang="en" aria-pressed="false">English</button>
+</div>
+
+<main class="card" id="card" aria-hidden="true">
+  <div class="rail rail-l" aria-hidden="true"></div>
+  <div class="rail rail-r" aria-hidden="true"></div>
+
+  <header class="invocation">
+    <div class="halo"><img class="mandala" src="img/mandala.webp" alt=""><img class="ganesh" src="img/ganesh-line.webp" alt="শ্রী গণেশ"></div>
+    <p class="mantra" data-i="ganesh">ওম শ্রী গণেশায় নমঃ</p>
+    <p class="mantra-sub" data-i="prajapati">শ্রী শ্রী প্রজাপতয়ে নমঃ</p>
+  </header>
+
+  <section class="hero">
+    <h1 class="occasion" data-i="occasion">শুভ বিবাহ</h1>
+    <figure class="couple">
+      <img class="couple-arch" src="img/arch-shape.webp" alt="">
+      <img class="couple-img" src="img/couple.webp" alt="অভিষেক ও বৈশালী" width="700" height="1049">
+    </figure>
+    <p class="names"><span data-i="groomFirst">অভিষেক</span><span class="amp" data-i="and">ও</span><span data-i="brideFirst">বৈশালী</span></p>
+    <img class="rule" src="img/divider.webp" alt="">
+    <blockquote class="quote" data-i="quote">দুটি প্রাণের মিলনে গড়বে নতুন পথ চলা,<br>হাসি আনন্দে ভরে উঠুক প্রতিটি দোলা।</blockquote>
+  </section>
+
+  <section class="letter">
+    <p class="salutation" data-i="salutation">সবিনয় নিবেদন,</p>
+    <p class="letter-body" data-i="letter"></p>
+  </section>
+
+  <section class="family" aria-labelledby="familyTitle">
+    <img class="family-cap" src="img/arch-cap-maroon.webp" alt="">
+    <div class="family-body">
+      <img class="corner corner-l" src="img/corner-gold-1.webp" alt="">
+      <img class="corner corner-r" src="img/corner-gold-1.webp" alt="">
+      <div class="om"><img src="img/om-icon.webp" alt="ॐ"></div>
+      <h2 id="familyTitle" class="family-title" data-i="familyTitle">যাদের জন্য বাজবে সানাই&nbsp;।।</h2>
+      <img class="rule rule-gold" src="img/divider.webp" alt="">
+
+      <article class="person">
+        <img class="person-img" src="img/groom.webp" alt="" width="520" height="779">
+        <h3 class="person-name" data-i="groomName">কল্যাণীয় অভিষেক দাস</h3>
+        <dl class="kin">
+          <div><dt data-i="father">পিতা</dt><dd data-i="groomFather">শ্রী রবীন্দ্র নাথ দাস</dd></div>
+          <div><dt data-i="mother">মাতা</dt><dd data-i="groomMother">শ্রীমতি অনিতা দাস</dd></div>
+        </dl>
+      </article>
+
+      <img class="tie" src="img/ritual-symbol.webp" alt="">
+
+      <article class="person">
+        <img class="person-img" src="img/bride.webp" alt="" width="520" height="779">
+        <h3 class="person-name" data-i="brideName">কল্যাণীয়া বৈশালী কর</h3>
+        <dl class="kin">
+          <div><dt data-i="father">পিতা</dt><dd data-i="brideFather">শ্রী বাবন কর</dd></div>
+          <div><dt data-i="mother">মাতা</dt><dd data-i="brideMother">শ্রীমতি শিউলি কর</dd></div>
+          <div><dt data-i="brother">ভ্রাতা</dt><dd data-i="brideBrother">কৌশিক কর</dd></div>
+        </dl>
+      </article>
+    </div>
+  </section>
+
+  <section class="moment" aria-labelledby="momentTitle">
+    <h2 id="momentTitle" class="section-title" data-i="momentTitle">শুভক্ষণ</h2>
+    <p class="section-note" data-i="scratchNote">সোনালি ঘরটি স্ক্র্যাচ করে শুভ দিনটি দেখুন</p>
+    <div class="coin" id="coin">
+      <div class="coin-face">
+        <span class="coin-event" data-i="eventName"></span>
+        <span class="coin-day" data-i="bnDay"></span>
+        <span class="coin-year" data-i="bnYear"></span>
+        <span class="coin-greg" data-i="gregDate"></span>
+        <span class="coin-time" data-i="eventTime"></span>
+      </div>
+      <canvas id="coinCanvas" aria-label="স্ক্র্যাচ করে তারিখ দেখুন" role="img"></canvas>
+    </div>
+    <div class="countdown" id="countdown" aria-live="off">
+      <div><b id="cdD">০</b><span data-i="days">দিন</span></div>
+      <div><b id="cdH">০</b><span data-i="hours">ঘণ্টা</span></div>
+      <div><b id="cdM">০</b><span data-i="minutes">মিনিট</span></div>
+      <div><b id="cdS">০</b><span data-i="seconds">সেকেন্ড</span></div>
+    </div>
+  </section>
+
+  <section class="venue" aria-labelledby="venueTitle">
+    <h2 id="venueTitle" class="section-title" data-i="venueTitle">অনুষ্ঠানস্থল</h2>
+    <p class="venue-name" data-i="venueName"></p>
+    <p class="venue-addr" data-i="venueAddr"></p>
+    <div class="map"><iframe id="mapFrame" title="মানচিত্র" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+    <a class="btn" id="mapLink" target="_blank" rel="noopener" data-i="directions">পথনির্দেশ দেখুন</a>
+  </section>
+
+  <section class="wishes" aria-labelledby="wishTitle">
+    <h2 id="wishTitle" class="section-title" data-i="wishTitle">আশীর্বাদ পাঠান</h2>
+    <p class="section-note" data-i="wishNote">নবদম্পতির জন্য দু-লাইন লিখে পাঠান। বর-কনে নিজেরা পড়বেন।</p>
+    <form id="wishForm" novalidate>
+      <label for="wName" data-i="yourName">আপনার নাম</label>
+      <input id="wName" name="name" maxlength="80" autocomplete="name" required>
+      <label for="wMsg" data-i="yourWish">আপনার শুভেচ্ছা</label>
+      <textarea id="wMsg" name="message" rows="4" maxlength="1000" required></textarea>
+      <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn" type="submit" id="wishBtn" data-i="send">আশীর্বাদ পাঠান</button>
+      <p class="form-status" id="wishStatus" role="status"></p>
+    </form>
+  </section>
+
+  <footer class="sign">
+    <img class="rule" src="img/divider.webp" alt="">
+    <p class="sign-label" data-i="nibedak">নিবেদক</p>
+    <p class="sign-names" data-i="hosts"></p>
+    <p class="sign-place" data-i="hostPlace"></p>
+  </footer>
+</main>
+
+<div class="petals" id="petals" aria-hidden="true"></div>
+<script src="app.js"></script>
+</body>
+</html>
