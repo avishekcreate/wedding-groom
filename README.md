@@ -10,5 +10,5 @@ Static site, no build step. Hosted on Cloudflare Pages; guest wishes are stored 
 ## Change something
 Edit `config.js` (e.g. `eventTime` once the lagna is fixed, and `countdownTo`), commit, push. Cloudflare redeploys in about a minute.
 
-## Cloudflare Pages settings
-Framework preset: None · Build command: (empty) · Build output directory: `/`
+## Hosting
+Live at https://wedding-groom.avishek-create.workers.dev/ (Cloudflare Workers, static assets, auto-deploys from `main`).
