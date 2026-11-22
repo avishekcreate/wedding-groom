@@ -1,2 +1,13 @@
+# Link-preview bots may read the page (WhatsApp, Facebook, Telegram, X).
+User-agent: WhatsApp
+Allow: /
+User-agent: facebookexternalhit
+Allow: /
+User-agent: TelegramBot
+Allow: /
+User-agent: Twitterbot
+Allow: /
+
+# Everyone else (search engines): stay out, the page has a home address.
 User-agent: *
 Disallow: /
