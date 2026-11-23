@@ -2,37 +2,45 @@
 window.WEDDING = {
   "side": "groom",
   "event": {
-    "countdownTo": "2027-02-14T19:00:00+05:30",
+    "countdownTo": "2027-02-11T00:00:00+05:30",
     "mapQuery": "Udichi Bhaban, Malbazar, West Bengal"
   },
   "text": {
     "bn": {
-      "pageTitle": "অভিষেক ও বৈশালী | শুভ বৌভাত",
-      "occasion": "শুভ বৌভাত",
-      "letter": "আগামী <strong>১লা ফাল্গুন ১৪৩৩, রবিবার</strong> (ইংরেজি ১৪ই ফেব্রুয়ারি ২০২৭) আমার পুত্র কল্যাণীয় <strong>অভিষেক</strong>-এর সহিত বানারহাট নিবাসী শ্রী বাবন কর মহাশয়ের কন্যা কল্যাণীয়া <strong>বৈশালী</strong>-র শুভ বিবাহ উপলক্ষে বৌভাত ও প্রীতিভোজের আয়োজন করা হইয়াছে। এই শুভ অনুষ্ঠানে আপনার সবান্ধব উপস্থিতি ও আশীর্বাদ একান্ত কাম্য।",
-      "eventName": "বৌভাত ও প্রীতিভোজ",
-      "bnDay": "১লা ফাল্গুন",
-      "bnYear": "১৪৩৩ বঙ্গাব্দ, রবিবার",
-      "gregDate": "১৪ ফেব্রুয়ারি ২০২৭",
-      "eventTime": "সন্ধ্যা ৭টা থেকে",
+      "dbTitle": "শুভঃ বিবাহ",
+      "dbWeekday": "বৃহস্পতিবার",
+      "dbDay": "২৭",
+      "dbSuffix": "শে",
+      "dbMonth": "মাঘ",
+      "dbYear": "১৪৩৩",
+      "dbGreg": "(ইং ১১ই ফেব্রুয়ারি ২০২৭)",
+      "dbLagna": "শুভ লগ্নের সময় শীঘ্রই জানানো হবে",
+      "pageTitle": "অভিষেক ও বৈশালী | শুভঃ বিবাহ ও বৌভাত",
+      "letter": "আগামী ২৭শে মাঘ ১৪৩৩, বৃহস্পতিবার (ইংরেজি ১১ই ফেব্রুয়ারি ২০২৭) আমার পুত্র কল্যাণীয় <strong>অভিষেক</strong>-এর সহিত বানারহাট নিবাসী শ্রী বাবন কর মহাশয়ের কন্যা কল্যাণীয়া <strong>বৈশালী</strong>-র শুভ বিবাহ স্থির হইয়াছে। তদুপলক্ষে আগামী ১লা ফাল্গুন ১৪৩৩, রবিবার (ইংরেজি ১৪ই ফেব্রুয়ারি ২০২৭) সন্ধ্যা ৭টা থেকে বৌভাত ও প্রীতিভোজের আয়োজন করা হইয়াছে। এই শুভ অনুষ্ঠানে আপনি সবান্ধবে উপস্থিত থাকিয়া নবদম্পতিকে আশীর্বাদ করিলে বাধিত হইব।",
+      "hosts": "শ্রী রবীন্দ্র নাথ দাস<br>শ্রীমতী অনিতা দাস",
+      "hostPlace": "মালবাজার",
+      "venueEvent": "বৌভাত ও প্রীতিভোজ",
+      "venueWhen": "১লা ফাল্গুন ১৪৩৩, রবিবার, সন্ধ্যা ৭টা থেকে",
       "venueName": "উদীচী ভবন",
-      "venueAddr": "মালবাজার, জেলা জলপাইগুড়ি",
-      "hosts": "শ্রী রবীন্দ্র নাথ দাস<br>শ্রীমতি অনিতা দাস",
-      "hostPlace": "মালবাজার"
+      "venueAddr": "মালবাজার, জেলা জলপাইগুড়ি"
     },
     "en": {
-      "pageTitle": "Avishek & Baishali | Bou Bhaat",
-      "occasion": "Bou Bhaat",
-      "letter": "On <strong>Sunday, 1 Falgun 1433</strong> (14 February 2027), to celebrate the marriage of our son <strong>Avishek</strong> with <strong>Baishali</strong>, daughter of Sri Baban Kar of Banarhat, we are hosting the Bou Bhaat and reception dinner. Your presence with your family, and your blessings, are warmly requested.",
-      "eventName": "Bou Bhaat & Reception",
-      "bnDay": "1 Falgun 1433",
-      "bnYear": "Sunday",
-      "gregDate": "14 February 2027",
-      "eventTime": "From 7 pm",
-      "venueName": "Udichi Bhaban",
-      "venueAddr": "Malbazar, Jalpaiguri",
+      "dbTitle": "Shubho Bibaho",
+      "dbWeekday": "Thursday",
+      "dbDay": "27",
+      "dbSuffix": "th",
+      "dbMonth": "Magh",
+      "dbYear": "1433",
+      "dbGreg": "(11 February 2027)",
+      "dbLagna": "Lagna time to be announced",
+      "pageTitle": "Avishek & Baishali | Wedding & Bou Bhaat",
+      "letter": "On Thursday, 27 Magh 1433 (11 February 2027), our son <strong>Avishek</strong> will be married to <strong>Baishali</strong>, daughter of Sri Baban Kar of Banarhat. To celebrate, we are hosting the Bou Bhaat and reception dinner on Sunday, 1 Falgun 1433 (14 February 2027), from 7 pm. We would be honoured if you join us with your family and bless the couple.",
       "hosts": "Sri Rabindra Nath Das<br>Smt. Anita Das",
-      "hostPlace": "Malbazar"
+      "hostPlace": "Malbazar",
+      "venueEvent": "Bou Bhaat &amp; reception",
+      "venueWhen": "Sunday, 14 February 2027, from 7 pm",
+      "venueName": "Udichi Bhaban",
+      "venueAddr": "Malbazar, Jalpaiguri"
     }
   },
   "supabase": {
