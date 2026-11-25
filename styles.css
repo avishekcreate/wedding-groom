@@ -406,3 +406,8 @@ html.anim .ritual.rv:nth-child(4){ transition-delay:.15s; }
 .motif-topor{ width:110px; margin-bottom:6px; }
 html[data-theme="bride"] .motif-paan, html[data-theme="bride"] .motif-palki{ filter:drop-shadow(0 0 1px rgba(243,233,213,.9)) drop-shadow(0 0 8px rgba(243,233,213,.3)); }
 html[data-theme="bride"] .motif-paan{ filter:brightness(0) saturate(100%) invert(86%) sepia(30%) saturate(560%) hue-rotate(352deg) brightness(97%); }
+
+/* softer glows on the maroon (bride) card */
+html[data-theme="bride"] .couple-img{ filter:drop-shadow(0 0 .8px rgba(243,233,213,.45)) drop-shadow(0 12px 16px rgba(0,0,0,.35)); }
+html[data-theme="bride"] .motif-fish, html[data-theme="bride"] .motif-palki{ filter:drop-shadow(0 0 .8px rgba(243,233,213,.45)) drop-shadow(0 6px 10px rgba(0,0,0,.25)); }
+.om{ box-shadow:0 0 0 2px var(--gold-light), 0 0 10px rgba(232,205,134,.25); }

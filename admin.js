@@ -5,12 +5,14 @@
     auth: { persistSession: true, detectSessionInUrl: true, flowType: "pkce" }
   });
   var $ = function (id) { return document.getElementById(id); };
-  var SIDE_LABEL = { bride: "কন্যাপক্ষ", groom: "বরপক্ষ" };
+  var SIDE = { bride: "কন্যাপক্ষ", groom: "বরপক্ষ" };
+  var BN = "০১২৩৪৫৬৭৮৯";
+  function bn(n) { return String(n).replace(/\d/g, function (d) { return BN[d]; }); }
+  var rows = [], filter = "all", query = "";
 
   function note(el, text, cls) { el.textContent = text; el.className = "note " + (cls || ""); }
-
-  function showLogin() { $("loginPanel").hidden = false; $("listPanel").hidden = true; }
-  function showList() { $("loginPanel").hidden = true; $("listPanel").hidden = false; load(); }
+  function showLogin() { $("loginPanel").hidden = false; $("appPanel").hidden = true; }
+  function showApp() { $("loginPanel").hidden = true; $("appPanel").hidden = false; load(); }
 
   $("loginForm").addEventListener("submit", function (e) {
     e.preventDefault();
@@ -32,17 +34,28 @@
     } catch (e) { return iso; }
   }
 
-  function render(rows) {
-    var list = $("list");
+  function visible() {
+    var q = query.toLowerCase();
+    return rows.filter(function (m) {
+      if (filter !== "all" && m.side !== filter) return false;
+      return !q || m.name.toLowerCase().indexOf(q) >= 0 || m.message.toLowerCase().indexOf(q) >= 0;
+    });
+  }
+
+  function render() {
+    $("nAll").textContent = bn(rows.length);
+    $("nGroom").textContent = bn(rows.filter(function (m) { return m.side === "groom"; }).length);
+    $("nBride").textContent = bn(rows.filter(function (m) { return m.side === "bride"; }).length);
+    var list = $("list"), shown = visible();
     list.innerHTML = "";
-    $("count").textContent = rows.length ? rows.length + "টি বার্তা" : "";
-    if (!rows.length) { note($("listNote"), "এখনও কোনো বার্তা আসেনি। কার্ডের লিঙ্ক অতিথিদের পাঠালে এখানে দেখা যাবে।"); return; }
+    if (!rows.length) { note($("listNote"), "এখনও কোনো বার্তা আসেনি। অতিথিরা কার্ড থেকে আশীর্বাদ পাঠালে এখানে দেখা যাবে।"); return; }
+    if (!shown.length) { note($("listNote"), "এই খোঁজে কোনো বার্তা মেলেনি।"); return; }
     note($("listNote"), "");
-    rows.forEach(function (m) {
+    shown.forEach(function (m) {
       var item = document.createElement("article"); item.className = "msg";
       var head = document.createElement("div"); head.className = "msg-head";
       var who = document.createElement("span"); who.className = "msg-name"; who.textContent = m.name;
-      if ($("bothSides").checked) { var s = document.createElement("span"); s.className = "msg-side"; s.textContent = SIDE_LABEL[m.side]; who.appendChild(s); }
+      var tag = document.createElement("span"); tag.className = "tag"; tag.textContent = SIDE[m.side]; who.appendChild(tag);
       var when = document.createElement("span"); when.className = "msg-time"; when.textContent = fmt(m.created_at);
       head.appendChild(who); head.appendChild(when);
       var text = document.createElement("p"); text.className = "msg-text"; text.textContent = m.message;
@@ -51,7 +64,8 @@
         if (del.dataset.confirm !== "1") { del.dataset.confirm = "1"; del.textContent = "নিশ্চিত? আবার চাপুন"; return; }
         sb.from("wedding_messages").delete().eq("id", m.id).then(function (r) {
           if (r.error) { note($("listNote"), "মোছা যায়নি: " + r.error.message, "err"); return; }
-          item.remove();
+          rows = rows.filter(function (x) { return x.id !== m.id; });
+          render();
         });
       });
       item.appendChild(head); item.appendChild(text); item.appendChild(del);
@@ -61,29 +75,53 @@
 
   function load() {
     note($("listNote"), "লোড হচ্ছে…");
-    sb.rpc("is_wedding_admin", { p_side: W.side }).then(function (r) {
-      if (r.error || !r.data) {
-        note($("listNote"), "এই ইমেলের বার্তা দেখার অনুমতি নেই। অন্য ইমেলে লগইন করুন।", "err");
-        $("list").innerHTML = ""; $("count").textContent = "";
-        return;
-      }
-      var q = sb.from("wedding_messages").select("id, side, name, message, created_at").order("created_at", { ascending: false }).limit(1000);
-      if (!$("bothSides").checked) q = q.eq("side", W.side);
-      q.then(function (res) {
+    sb.from("wedding_messages").select("id, side, name, message, created_at")
+      .order("created_at", { ascending: false }).limit(5000)
+      .then(function (res) {
         if (res.error) { note($("listNote"), "লোড করা যায়নি: " + res.error.message, "err"); return; }
-        render(res.data || []);
+        rows = res.data || [];
+        if (!rows.length) {
+          return sb.rpc("is_wedding_admin", { p_side: W.side }).then(function (r) {
+            if (r.error || !r.data) {
+              note($("listNote"), "এই ইমেলের বার্তা দেখার অনুমতি নেই। অন্য ইমেলে লগইন করুন।", "err");
+              return;
+            }
+            render();
+          });
+        }
+        $("updated").textContent = "শেষ আপডেট: " + fmt(new Date().toISOString());
+        render();
       });
-    });
   }
 
-  $("refresh").addEventListener("click", load);
-  $("bothSides").addEventListener("change", load);
-  $("logout").addEventListener("click", function () { sb.auth.signOut().then(showLogin); });
+  function csv() {
+    var shown = visible();
+    var esc = function (v) { return '"' + String(v).replace(/"/g, '""') + '"'; };
+    var lines = [["Name", "Message", "Card", "Sent at (IST)"].map(esc).join(",")];
+    shown.forEach(function (m) {
+      var when = new Date(m.created_at).toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+      lines.push([m.name, m.message, m.side === "groom" ? "Groom side" : "Bride side", when].map(esc).join(","));
+    });
+    var blob = new Blob(["﻿" + lines.join("\r\n")], { type: "text/csv;charset=utf-8" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "wedding-blessings-" + new Date().toISOString().slice(0, 10) + ".csv";
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+  }
 
-  sb.auth.onAuthStateChange(function (event, session) {
-    if (event === "SIGNED_IN" && session) showList();
+  document.querySelector(".tabs").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-f]"); if (!b) return;
+    filter = b.dataset.f;
+    document.querySelectorAll(".tabs button").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+    render();
   });
-  sb.auth.getSession().then(function (r) {
-    if (r.data && r.data.session) showList(); else showLogin();
-  });
+  $("q").addEventListener("input", function () { query = this.value.trim(); render(); });
+  $("csv").addEventListener("click", csv);
+  $("refresh").addEventListener("click", load);
+  $("logout").addEventListener("click", function () { sb.auth.signOut().then(showLogin); });
+  setInterval(function () { if (!$("appPanel").hidden && !document.hidden) load(); }, 60000);
+
+  sb.auth.onAuthStateChange(function (event, session) { if (event === "SIGNED_IN" && session) showApp(); });
+  sb.auth.getSession().then(function (r) { if (r.data && r.data.session) showApp(); else showLogin(); });
 })();
