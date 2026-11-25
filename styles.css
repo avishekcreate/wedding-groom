@@ -317,3 +317,37 @@ html.anim .couple.rv.in{ transform:none; }
 html[lang="en"] .kin{ font-size:16.5px; line-height:1.4; }
 html[lang="en"] .kin dt, html[lang="en"] .kin dd{ display:block; }
 html[lang="en"] .kin div{ margin-bottom:6px; }
+
+/* ---------- Bengali decorations ---------- */
+.toran{ position:absolute; top:0; left:26px; right:26px; z-index:2; pointer-events:none; transform-origin:50% 0; }
+.toran-svg{ display:block; width:100%; height:auto; filter:drop-shadow(0 4px 4px rgba(60,20,0,.25)); }
+@media (prefers-reduced-motion:no-preference){ .toran{ animation:sway 6s ease-in-out infinite alternate; } @keyframes sway{ from{ transform:rotate(-.4deg); } to{ transform:rotate(.4deg); } } }
+.card{ padding-top:clamp(96px,27vw,124px); }
+@media (max-width:360px){ .toran{ left:18px; right:18px; } }
+
+/* alpona: white rice-paste style on the bride's maroon, maroon on the groom's cream */
+.alpona-band{ height:36px; margin:52px -10px -20px; color:var(--alpona-ink); }
+html[data-theme="groom"]{ --alpona-ink:rgba(91,19,35,.55); }
+html[data-theme="bride"]{ --alpona-ink:rgba(255,248,236,.8); }
+.alpona-svg{ display:block; width:100%; height:100%; }
+.env-alpona{ position:absolute; left:4%; right:4%; bottom:5%; height:12%; z-index:5; color:rgba(201,160,78,.85); pointer-events:none; }
+
+/* kantha running stitch around the letter */
+.kantha{ position:relative; padding:30px 18px 28px; }
+.kantha::before{ content:""; position:absolute; inset:0; pointer-events:none; border-radius:14px;
+  --st:var(--stitch);
+  background:
+    repeating-linear-gradient(90deg, var(--st) 0 7px, transparent 7px 13px) top/100% 1.6px no-repeat,
+    repeating-linear-gradient(90deg, var(--st) 0 7px, transparent 7px 13px) bottom/100% 1.6px no-repeat,
+    repeating-linear-gradient(180deg, var(--st) 0 7px, transparent 7px 13px) left/1.6px 100% no-repeat,
+    repeating-linear-gradient(180deg, var(--st) 0 7px, transparent 7px 13px) right/1.6px 100% no-repeat; }
+.kantha::after{ content:""; position:absolute; inset:6px; pointer-events:none; border-radius:10px;
+  background:
+    repeating-linear-gradient(90deg, var(--stitch-2) 0 4px, transparent 4px 10px) top/100% 1.2px no-repeat,
+    repeating-linear-gradient(90deg, var(--stitch-2) 0 4px, transparent 4px 10px) bottom/100% 1.2px no-repeat,
+    repeating-linear-gradient(180deg, var(--stitch-2) 0 4px, transparent 4px 10px) left/1.2px 100% no-repeat,
+    repeating-linear-gradient(180deg, var(--stitch-2) 0 4px, transparent 4px 10px) right/1.2px 100% no-repeat; }
+html[data-theme="groom"]{ --stitch:#A3182F; --stitch-2:#C9A04E; }
+html[data-theme="bride"]{ --stitch:#E8CD86; --stitch-2:rgba(255,248,236,.6); }
+.kantha .rule-img{ margin-top:4px; }
+.music[hidden]{ display:none; }
