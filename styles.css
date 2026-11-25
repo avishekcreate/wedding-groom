@@ -401,3 +401,8 @@ html[lang="en"] .ritual figcaption{ font-weight:600; font-size:19px; line-height
 html.anim .ritual.rv:nth-child(2){ transition-delay:.1s; }
 html.anim .ritual.rv:nth-child(3){ transition-delay:.05s; }
 html.anim .ritual.rv:nth-child(4){ transition-delay:.15s; }
+.motif-paan{ width:78px; margin:-4px auto 14px; }
+.motif-palki{ width:150px; margin-bottom:6px; }
+.motif-topor{ width:110px; margin-bottom:6px; }
+html[data-theme="bride"] .motif-paan, html[data-theme="bride"] .motif-palki{ filter:drop-shadow(0 0 1px rgba(243,233,213,.9)) drop-shadow(0 0 8px rgba(243,233,213,.3)); }
+html[data-theme="bride"] .motif-paan{ filter:brightness(0) saturate(100%) invert(86%) sepia(30%) saturate(560%) hue-rotate(352deg) brightness(97%); }
