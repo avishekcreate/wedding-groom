@@ -98,6 +98,7 @@
     opened = true;
     var steps = reduceMotion ? [0, 0, 0, 0] : [0, 380, 760, 1900];
     document.getElementById("stage").classList.add("is-leaving");
+    startMusic();
     setTimeout(function () { envelope.classList.add("is-opening"); }, steps[0]);
     setTimeout(function () { envelope.classList.add("flap-behind"); }, steps[1]);
     setTimeout(function () { envelope.classList.add("card-out"); }, steps[2]);
@@ -108,11 +109,53 @@
       window.scrollTo(0, 0);
       petalShower();
       sizeCoin();
+      document.getElementById("music").hidden = false;
       startReveals();
     }, steps[3]);
   }
   envelope.addEventListener("click", openInvitation);
   document.getElementById("openBtn").addEventListener("click", openInvitation);
+
+  /* ---------------- Music (starts with the tap that opens the envelope) ---------------- */
+  var bgm = document.getElementById("bgm");
+  var musicBtn = document.getElementById("music");
+  var muted = false, fadeTimer = null;
+  try { muted = localStorage.getItem("wedding-muted") === "1"; } catch (e) {}
+  bgm.src = W.audio;
+  function setBtn() {
+    musicBtn.setAttribute("aria-pressed", String(muted));
+    musicBtn.setAttribute("aria-label", muted ? (lang === "bn" ? "গান চালু করুন" : "Play music") : (lang === "bn" ? "গান বন্ধ করুন" : "Mute music"));
+    musicBtn.classList.toggle("playing", !muted && !bgm.paused);
+  }
+  function fadeTo(target, ms, done) {
+    clearInterval(fadeTimer);
+    var from = bgm.volume, t0 = Date.now();
+    fadeTimer = setInterval(function () {
+      var k = Math.min(1, (Date.now() - t0) / ms);
+      bgm.volume = from + (target - from) * k;
+      if (k === 1) { clearInterval(fadeTimer); if (done) done(); }
+    }, 50);
+  }
+  function play() {
+    bgm.volume = 0;
+    var p = bgm.play();
+    if (p && p.catch) p.catch(function () { setBtn(); });
+    fadeTo(0.6, 2000);
+    setBtn();
+  }
+  function startMusic() { if (!muted) play(); setBtn(); }
+  musicBtn.addEventListener("click", function () {
+    muted = !muted;
+    try { localStorage.setItem("wedding-muted", muted ? "1" : "0"); } catch (e) {}
+    if (muted) fadeTo(0, 400, function () { bgm.pause(); setBtn(); }); else play();
+    setBtn();
+  });
+  bgm.addEventListener("play", setBtn);
+  bgm.addEventListener("pause", setBtn);
+  document.addEventListener("visibilitychange", function () {
+    if (!opened || muted) return;
+    if (document.hidden) bgm.pause(); else play();
+  });
 
   /* ---------------- Petals (once, on open) ---------------- */
   function petalShower() {
