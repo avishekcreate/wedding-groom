@@ -383,3 +383,21 @@ html[lang="bn"] .kin dd{ padding-left:.3em; }
   html[lang="bn"] .kin dd{ padding-left:0; font-size:18px; line-height:1.5; }
   html[lang="bn"] .kin div{ margin-bottom:6px; }
 }
+
+/* ---------- Illustrations ---------- */
+.motif{ display:block; height:auto; margin:0 auto; filter:drop-shadow(0 6px 10px rgba(40,0,10,.18)); }
+.motif-shankha{ width:96px; margin-top:34px; }
+.motif-ghot{ width:84px; margin:40px auto -12px; }
+.motif-fish{ width:104px; margin-top:14px; }
+html[data-theme="bride"] .motif-fish{ filter:drop-shadow(0 0 1px rgba(243,233,213,.9)) drop-shadow(0 0 8px rgba(243,233,213,.35)); }
+.couple{ margin-top:8px; }
+
+.rituals{ margin-top:56px; }
+.ritual-grid{ display:grid; grid-template-columns:1fr 1fr; gap:22px 14px; margin-top:16px; }
+.ritual{ display:flex; flex-direction:column; align-items:center; }
+.ritual img{ width:100%; height:auto; filter:drop-shadow(0 8px 12px rgba(40,0,10,.22)); }
+.ritual figcaption{ margin-top:6px; font-family:var(--display); font-style:var(--dstyle); color:var(--accent); font-size:20px; line-height:1.6; }
+html[lang="en"] .ritual figcaption{ font-weight:600; font-size:19px; line-height:1.3; }
+html.anim .ritual.rv:nth-child(2){ transition-delay:.1s; }
+html.anim .ritual.rv:nth-child(3){ transition-delay:.05s; }
+html.anim .ritual.rv:nth-child(4){ transition-delay:.15s; }
