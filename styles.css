@@ -1,6 +1,5 @@
 /* ---------- Fonts (self-hosted) ---------- */
-@font-face{font-family:"Tiro Bangla";src:url(fonts/tiro-bangla-bengali-400-italic.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
-@font-face{font-family:"Tiro Bangla";src:url(fonts/tiro-bangla-bengali-400-normal.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Lipishree";src:url(fonts/lipishree.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:"Noto Serif Bengali";src:url(fonts/noto-serif-bengali-bengali-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
 @font-face{font-family:"Noto Serif Bengali";src:url(fonts/noto-serif-bengali-bengali-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
 @font-face{font-family:"Noto Serif Bengali";src:url(fonts/noto-serif-bengali-bengali-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
@@ -15,7 +14,8 @@
   --cream:#F3E9D5;
   --gold:#C9A04E;
   --gold-light:#E8CD86;
-  --display:"Tiro Bangla","Noto Serif Bengali",serif;
+  --display:"Lipishree","Noto Serif Bengali",serif;
+  --dstyle:normal;
   --text:"Noto Serif Bengali","Cormorant Garamond",serif;
   --noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.2 0 0 0 0 0.1 0 0 0 .12 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
@@ -54,7 +54,7 @@ body.is-closed{ overflow:hidden; }
 img{ max-width:100%; }
 p,h1,h2,h3,dl,dd,figure,blockquote{ margin:0; }
 :focus-visible{ outline:2px solid var(--gold); outline-offset:3px; border-radius:6px; }
-html[lang="en"]{ --display:"Cormorant Garamond",serif; --text:"Cormorant Garamond",serif; }
+html[lang="en"]{ --display:"Cormorant Garamond",serif; --text:"Cormorant Garamond",serif; --dstyle:italic; }
 
 /* ---------- Envelope stage ---------- */
 .stage{ position:fixed; inset:0; z-index:30; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:34px;
@@ -70,7 +70,7 @@ body.is-open .stage{ opacity:0; visibility:hidden; pointer-events:none; }
   background:var(--noise), var(--card); box-shadow:0 0 0 1px rgba(201,160,78,.6) inset;
   display:flex; flex-direction:column; align-items:center; padding-top:7%; gap:4%; transition:transform 1s cubic-bezier(.22,.8,.3,1); }
 .env-card img{ width:22%; }
-.env-card-names{ font-family:"Tiro Bangla",serif; font-style:italic; color:var(--accent); font-size:clamp(17px,5vw,23px); line-height:1.5; }
+.env-card-names{ font-family:var(--display); font-style:var(--dstyle); color:var(--accent); font-size:clamp(17px,5vw,23px); line-height:1.5; }
 .env-pocket{ position:absolute; inset:0; width:100%; height:100%; z-index:3; filter:drop-shadow(0 -1px 2px rgba(60,10,20,.15)); }
 .s-pk1{ stop-color:var(--env-1); } .s-pk2{ stop-color:var(--env-2); }
 .s-pkl1{ stop-color:var(--env-side-1); } .s-pkl2{ stop-color:var(--env-side-2); }
@@ -79,7 +79,7 @@ body.is-open .stage{ opacity:0; visibility:hidden; pointer-events:none; }
   transition:transform .8s cubic-bezier(.55,.05,.35,1); filter:drop-shadow(0 4px 6px rgba(60,10,20,.2)); }
 .env-flap svg{ display:block; width:100%; height:100%; }
 .env-title{ position:absolute; left:0; right:0; top:20%; text-align:center; padding:0 16%;
-  font-family:"Tiro Bangla",serif; font-style:italic; color:var(--env-title); font-size:clamp(16px,4.8vw,22px); line-height:1.6; backface-visibility:hidden; }
+  font-family:var(--display); font-style:var(--dstyle); color:var(--env-title); font-size:clamp(16px,4.8vw,22px); line-height:1.6; backface-visibility:hidden; }
 .seal{ position:absolute; left:50%; top:59%; width:24%; aspect-ratio:1; transform:translate(-50%,-50%); z-index:6;
   filter:drop-shadow(0 5px 8px rgba(30,0,8,.45)); transition:transform .25s ease; }
 .envelope:hover .seal{ transform:translate(-50%,-50%) scale(1.05); }
@@ -119,7 +119,7 @@ body.is-closed .card{ visibility:hidden; height:100vh; }
 @media (max-width:360px){ .rail{ width:14px; background-size:14px auto; } .rail-l{ left:4px; } .rail-r{ right:4px; } }
 
 .rule-img{ display:block; width:min(220px,80%); aspect-ratio:536/54; margin:0 auto 22px; background:var(--divider) center/contain no-repeat; }
-.section-title{ font-family:var(--display); font-style:italic; font-weight:400; color:var(--accent); font-size:31px; line-height:1.55; }
+.section-title{ font-family:var(--display); font-style:var(--dstyle); font-weight:400; color:var(--accent); font-size:31px; line-height:1.55; }
 .section-note{ color:var(--ink-soft); font-size:15px; line-height:1.7; margin-top:4px; }
 html[lang="en"] .section-title{ font-weight:600; font-size:34px; line-height:1.2; }
 html[lang="en"] .section-note{ font-size:18px; }
@@ -130,13 +130,13 @@ html[lang="en"] .section-note{ font-size:18px; }
 .halo .mandala{ position:absolute; inset:0; width:100%; height:100%; opacity:.55; }
 .halo .ganesh{ position:relative; width:86px; }
 @media (prefers-reduced-motion:no-preference){ .halo .mandala{ animation:turn 120s linear infinite; } @keyframes turn{ to{ transform:rotate(360deg); } } }
-.mantra{ font-family:"Tiro Bangla",serif; font-style:italic; color:var(--accent); font-size:23px; line-height:1.6; margin-top:6px; }
-.mantra-sub{ font-family:"Tiro Bangla",serif; font-style:italic; color:var(--ink-soft); font-size:18px; line-height:1.6; }
+.mantra{ font-family:var(--display); font-style:var(--dstyle); color:var(--accent); font-size:23px; line-height:1.6; margin-top:6px; }
+.mantra-sub{ font-family:var(--display); font-style:var(--dstyle); color:var(--ink-soft); font-size:18px; line-height:1.6; }
 html[lang="en"] .mantra{ font-family:"Cormorant Garamond",serif; font-weight:600; font-size:22px; }
 html[lang="en"] .mantra-sub{ font-family:"Cormorant Garamond",serif; font-size:18px; }
 
 /* 2. title */
-.occasion{ margin-top:22px; font-family:var(--display); font-style:italic; font-weight:400; color:var(--accent);
+.occasion{ margin-top:22px; font-family:var(--display); font-style:var(--dstyle); font-weight:400; color:var(--accent);
   font-size:clamp(50px,16vw,72px); line-height:1.4; -webkit-text-stroke:.018em currentColor; paint-order:stroke fill;
   text-shadow:0 2px 14px rgba(201,160,78,.35); }
 html[lang="en"] .occasion{ font-weight:600; line-height:1.1; -webkit-text-stroke:0; font-size:clamp(46px,14vw,62px); }
@@ -147,7 +147,7 @@ html[lang="en"] .occasion{ font-weight:600; line-height:1.1; -webkit-text-stroke
   box-shadow:0 0 0 3px var(--card), 0 0 0 4.5px var(--gold), 0 18px 34px rgba(40,0,10,.28); }
 .datebox-face{ border-radius:16px; padding:20px 14px 18px; color:var(--box-ink);
   background:url(img/mandala.webp) center/120% no-repeat, var(--box); background-blend-mode:soft-light; }
-.db-title{ font-family:var(--display); font-style:italic; color:var(--box-accent); font-size:26px; line-height:1.5; }
+.db-title{ font-family:var(--display); font-style:var(--dstyle); color:var(--box-accent); font-size:26px; line-height:1.5; }
 .db-row{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:10px; margin-top:6px; }
 .db-side{ border-top:1px solid var(--box-accent); border-bottom:1px solid var(--box-accent); padding:5px 0;
   font-size:clamp(13px,3.9vw,16px); line-height:1.6; white-space:nowrap; color:var(--box-accent); font-weight:600; }
@@ -195,7 +195,7 @@ html[data-theme="bride"] .couple-img{ filter:drop-shadow(0 0 1.2px rgba(243,233,
 .om{ width:66px; height:66px; margin:-34% auto 0; border-radius:50%; display:grid; place-items:center;
   background:radial-gradient(circle,#FFF8EA,#EFD9AE); box-shadow:0 0 0 2px var(--gold-light), 0 0 22px rgba(232,205,134,.55); }
 .om img{ width:40px; }
-.family-title{ margin-top:14px; font-family:var(--display); font-style:italic; font-weight:400; font-size:clamp(23px,6.8vw,27px); line-height:1.6; color:var(--panel-title); }
+.family-title{ margin-top:14px; font-family:var(--display); font-style:var(--dstyle); font-weight:400; font-size:clamp(23px,6.8vw,27px); line-height:1.6; color:var(--panel-title); }
 html[lang="en"] .family-title{ font-weight:600; font-size:26px; line-height:1.25; }
 .rule-gold{ display:block; width:min(200px,80%); aspect-ratio:536/54; margin:12px auto 22px; background:url(img/divider-gold.webp) center/contain no-repeat; }
 html[data-theme="bride"] .rule-gold{ background-image:url(img/divider.webp); }
@@ -210,7 +210,7 @@ html[data-theme="bride"] .person-groom{ order:3; }
 .person-img{ grid-area:img; width:100%; height:auto; filter:drop-shadow(0 8px 12px rgba(0,0,0,.3)); }
 .person-text{ grid-area:text; min-width:0; }
 .person-pre{ font-size:14.5px; line-height:1.5; color:var(--panel-label); }
-.person-name{ font-family:var(--display); font-style:italic; font-weight:400; color:var(--panel-name); font-size:clamp(23px,6.6vw,28px); line-height:1.45; }
+.person-name{ font-family:var(--display); font-style:var(--dstyle); font-weight:400; color:var(--panel-name); font-size:clamp(23px,6.6vw,28px); line-height:1.45; }
 html[lang="en"] .person-name{ font-weight:600; line-height:1.2; }
 .kin{ margin-top:6px; font-size:14.5px; line-height:1.75; }
 .kin div{ margin-bottom:2px; }
@@ -225,7 +225,7 @@ html[lang="en"] .kin, html[lang="en"] .person-pre{ font-size:17px; line-height:1
 
 /* 7–8. letter */
 .letter{ margin-top:52px; }
-.quote{ font-family:"Tiro Bangla",serif; font-style:italic; color:var(--accent); font-size:19px; line-height:1.85; }
+.quote{ font-family:var(--display); font-style:var(--dstyle); color:var(--accent); font-size:19px; line-height:1.85; }
 .salutation{ margin-top:26px; font-weight:600; color:var(--accent); font-size:17px; }
 .letter-body{ margin-top:8px; font-size:16.5px; line-height:2; color:var(--ink); }
 .letter-body strong{ color:var(--accent); font-weight:600; }
@@ -236,12 +236,12 @@ html[lang="en"] .salutation{ font-size:19px; }
 /* 9. hosts */
 .sign{ margin-top:36px; }
 .sign-label{ color:var(--ink-soft); font-size:15px; }
-.sign-names{ font-family:var(--display); font-style:italic; color:var(--accent); font-size:24px; line-height:1.6; margin-top:2px; }
+.sign-names{ font-family:var(--display); font-style:var(--dstyle); color:var(--accent); font-size:24px; line-height:1.6; margin-top:2px; }
 html[lang="en"] .sign-names{ font-weight:600; font-size:24px; line-height:1.35; }
 .sign-place{ color:var(--ink-soft); font-size:15px; line-height:1.7; margin-top:2px; }
 
 /* 10. names together */
-.together{ margin-top:40px; font-family:var(--display); font-style:italic; color:var(--accent); font-size:clamp(32px,10vw,42px); line-height:1.5;
+.together{ margin-top:40px; font-family:var(--display); font-style:var(--dstyle); color:var(--accent); font-size:clamp(32px,10vw,42px); line-height:1.5;
   -webkit-text-stroke:.012em currentColor; }
 html[lang="en"] .together{ font-weight:600; -webkit-text-stroke:0; line-height:1.2; }
 
@@ -249,7 +249,7 @@ html[lang="en"] .together{ font-weight:600; -webkit-text-stroke:0; line-height:1
 .venue{ margin-top:56px; }
 .venue-event{ margin-top:6px; font-weight:600; color:var(--accent-2); font-size:16px; }
 .venue-when{ color:var(--ink-soft); font-size:15px; line-height:1.7; }
-.venue-name{ margin-top:10px; font-family:var(--display); font-style:italic; color:var(--accent); font-size:26px; line-height:1.5; }
+.venue-name{ margin-top:10px; font-family:var(--display); font-style:var(--dstyle); color:var(--accent); font-size:26px; line-height:1.5; }
 .venue-addr{ color:var(--ink-soft); font-size:15.5px; line-height:1.75; margin-top:2px; }
 html[lang="en"] .venue-event{ font-size:19px; }
 html[lang="en"] .venue-when, html[lang="en"] .venue-addr{ font-size:18px; line-height:1.5; }
@@ -351,3 +351,35 @@ html[data-theme="groom"]{ --stitch:#A3182F; --stitch-2:#C9A04E; }
 html[data-theme="bride"]{ --stitch:#E8CD86; --stitch-2:rgba(255,248,236,.6); }
 .kantha .rule-img{ margin-top:4px; }
 .music[hidden]{ display:none; }
+
+/* ---------- Lipishree (Bengali display) tuning ---------- */
+html[lang="bn"] .occasion{ font-size:clamp(54px,17vw,76px); line-height:1.5; -webkit-text-stroke:.01em currentColor; padding:0 .25em; }
+html[lang="bn"] .mantra{ font-size:26px; line-height:1.8; }
+html[lang="bn"] .mantra-sub{ font-size:21px; line-height:1.8; }
+html[lang="bn"] .env-title{ font-size:clamp(18px,5.4vw,24px); line-height:1.8; top:16%; }
+html[lang="bn"] .env-card-names{ font-size:clamp(19px,5.8vw,26px); line-height:1.7; }
+html[lang="bn"] .db-title{ font-size:30px; line-height:1.7; }
+html[lang="bn"] .family-title{ font-size:clamp(25px,7.6vw,30px); line-height:1.75; }
+html[lang="bn"] .person-name{ font-size:clamp(25px,7.4vw,31px); line-height:1.6; }
+html[lang="bn"] .person-pre{ font-family:var(--display); font-size:19px; line-height:1.5; }
+html[lang="bn"] .kin dd{ font-family:var(--display); font-size:19px; }
+html[lang="bn"] .kin{ line-height:1.8; }
+html[lang="bn"] .quote{ font-size:23px; line-height:1.9; }
+html[lang="bn"] .salutation{ font-family:var(--display); font-weight:400; font-size:22px; }
+html[lang="bn"] .section-title{ font-size:34px; line-height:1.75; }
+html[lang="bn"] .sign-names{ font-size:27px; line-height:1.75; }
+html[lang="bn"] .sign-label, html[lang="bn"] .sign-place{ font-family:var(--display); font-size:19px; }
+html[lang="bn"] .together{ font-size:clamp(36px,11.5vw,48px); line-height:1.6; -webkit-text-stroke:.008em currentColor; }
+html[lang="bn"] .venue-name{ font-size:29px; line-height:1.7; }
+html[lang="bn"] .venue-event{ font-family:var(--display); font-weight:400; font-size:21px; }
+html[lang="bn"] .open-btn span{ font-family:var(--display); font-size:19px; line-height:1.7; }
+html[lang="bn"] .db-side{ font-family:var(--display); font-weight:400; font-size:clamp(16px,4.8vw,19px); }
+html[lang="bn"] .quote{ font-size:clamp(16px,4.9vw,21px); line-height:2; }
+html[lang="bn"] .kin dd{ padding-left:.3em; }
+.kantha{ padding-left:12px; padding-right:12px; }
+@media (max-width:400px){
+  html[lang="bn"] .kin dt, html[lang="bn"] .kin dd{ display:block; }
+  html[lang="bn"] .kin dt{ font-size:13.5px; line-height:1.3; }
+  html[lang="bn"] .kin dd{ padding-left:0; font-size:18px; line-height:1.5; }
+  html[lang="bn"] .kin div{ margin-bottom:6px; }
+}
