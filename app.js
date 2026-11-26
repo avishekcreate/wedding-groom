@@ -11,13 +11,13 @@
       openHint: "সিলমোহরে ছুঁয়ে খুলুন",
       ganesh: "ওঁ শ্রী গণেশায় নমঃ",
       prajapati: "শ্রী শ্রী প্রজাপতয়ে নমঃ",
-      occasion: "শুভঃ বিবাহ",
+      occasion: "শুভ বিবাহ",
       familyTitle: "যাদের জন্য বাজবে সানাই&nbsp;।।",
       kalyaniyo: "কল্যাণীয়", kalyaniya: "কল্যাণীয়া",
       father: "পিতা", mother: "মাতা", brother: "ভ্রাতা",
       groomName: "অভিষেক দাস", groomFather: "শ্রী রবীন্দ্র নাথ দাস", groomMother: "শ্রীমতী অনিতা দাস",
       brideName: "বৈশালী কর", brideFather: "শ্রী বাবন কর", brideMother: "শ্রীমতী শিউলি কর", brideBrother: "কৌশিক কর",
-      quote: "দুটি প্রাণের মিলনে গড়বে নতুন পথ চলা,<br>হাসি আনন্দে ভরে উঠুক প্রতিটি দোলা।",
+      quote: "দুটি প্রাণের মিলনে গড়বে নতুন পথচলা,<br>হাসি আনন্দে ভরে উঠুক জীবনের প্রতিটি বেলা।",
       salutation: "সবিনয় নিবেদন,",
       nibedak: "নিবেদক",
       ritualTitle: "শুভ বিবাহের মুহূর্ত", rShubho: "শুভদৃষ্টি", rMala: "মালাবদল", rYagna: "সাত পাক ও যজ্ঞ", rSindoor: "সিঁদুর দান",
@@ -98,10 +98,17 @@
   function openInvitation() {
     if (opened) return;
     opened = true;
-    var steps = reduceMotion ? [0, 0, 0, 0] : [0, 380, 760, 1900];
+    var steps = reduceMotion ? [0, 0, 0, 0] : [160, 560, 940, 2100];
     document.getElementById("stage").classList.add("is-leaving");
     startMusic();
-    setTimeout(function () { envelope.classList.add("is-opening"); }, steps[0]);
+    try { if (navigator.vibrate) navigator.vibrate(15); } catch (e) {}
+    envelope.classList.add("is-pressed");
+    setTimeout(function () {
+      envelope.classList.remove("is-pressed");
+      envelope.classList.add("is-opening");
+      var r = envelope.querySelector(".seal").getBoundingClientRect();
+      if (window.FX) FX.burst(r.left + r.width / 2, r.top + r.height / 2, 1);
+    }, steps[0]);
     setTimeout(function () { envelope.classList.add("flap-behind"); }, steps[1]);
     setTimeout(function () { envelope.classList.add("card-out"); }, steps[2]);
     setTimeout(function () {
@@ -109,7 +116,7 @@
       document.body.classList.add("is-open");
       document.getElementById("card").removeAttribute("aria-hidden");
       window.scrollTo(0, 0);
-      petalShower();
+      if (window.FX) FX.shower(70);
       sizeCoin();
       document.getElementById("music").hidden = false;
       startReveals();
@@ -159,24 +166,6 @@
     if (document.hidden) bgm.pause(); else play();
   });
 
-  /* ---------------- Petals (once, on open) ---------------- */
-  function petalShower() {
-    if (reduceMotion) return;
-    var box = document.getElementById("petals");
-    var colors = ["#F2A93B", "#E8862A", "#C9A04E", "#A3182F", "#F6C451"];
-    for (var i = 0; i < 34; i++) {
-      var p = document.createElement("span");
-      p.className = "petal";
-      p.style.left = Math.random() * 100 + "vw";
-      p.style.background = colors[i % colors.length];
-      p.style.setProperty("--d", 5 + Math.random() * 4 + "s");
-      p.style.setProperty("--x", (Math.random() - 0.5) * 140 + "px");
-      p.style.setProperty("--r", 300 + Math.random() * 500 + "deg");
-      p.style.animationDelay = Math.random() * 1.6 + "s";
-      box.appendChild(p);
-    }
-    setTimeout(function () { box.innerHTML = ""; }, 11000);
-  }
 
   /* ---------------- Scroll reveals (each section once) ---------------- */
   var countedUp = false;
@@ -192,6 +181,7 @@
         en.target.classList.add("in");
         io.unobserve(en.target);
         if (en.target.id === "countdown") countUp();
+        if (en.target.classList.contains("family") && window.FX) FX.shower(36);
       });
     }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
     els.forEach(function (el) { io.observe(el); });
@@ -259,7 +249,7 @@
     var data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
     var step = Math.max(4, Math.round(6 * dpr)), cw = canvas.width, ch = canvas.height, total = 0, clear = 0;
     for (var y = 0; y < ch; y += step) for (var x = 0; x < cw; x += step) { total++; if (data[(y * cw + x) * 4 + 3] < 40) clear++; }
-    if (total && clear / total > 0.5) { revealed = true; box.classList.add("is-revealed"); burst(); }
+    if (total && clear / total > 0.5) { revealed = true; box.classList.add("is-revealed"); var br = box.getBoundingClientRect(); if (window.FX) FX.burst(br.left + br.width / 2, br.top + br.height / 2, .7); }
   }
   function pos(e) { var b = canvas.getBoundingClientRect(); return { x: e.clientX - b.left, y: e.clientY - b.top }; }
   var drawing = false;
@@ -277,25 +267,6 @@
   });
   window.addEventListener("resize", sizeCoin);
 
-  function burst() {
-    if (reduceMotion) return;
-    var b = box.getBoundingClientRect(), layer = document.getElementById("petals");
-    var colors = ["#F2A93B", "#C9A04E", "#A3182F", "#F6C451"];
-    for (var i = 0; i < 26; i++) {
-      var p = document.createElement("span");
-      p.className = "petal";
-      p.style.cssText = "top:" + (b.top + b.height / 2) + "px;left:" + (b.left + b.width / 2) + "px;background:" + colors[i % 4] +
-        ";animation:none;transition:transform 1.4s cubic-bezier(.15,.7,.3,1),opacity 1.4s";
-      layer.appendChild(p);
-      (function (el, a, d) {
-        requestAnimationFrame(function () { requestAnimationFrame(function () {
-          el.style.transform = "translate(" + Math.cos(a) * d + "px," + (Math.sin(a) * d + 60) + "px) rotate(" + (a * 300) + "deg)";
-          el.style.opacity = "0";
-        }); });
-        setTimeout(function () { el.remove(); }, 1600);
-      })(p, Math.random() * Math.PI * 2, 90 + Math.random() * 110);
-    }
-  }
 
   /* ---------------- Countdown ---------------- */
   var target = new Date(W.event.countdownTo).getTime();
