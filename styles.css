@@ -429,3 +429,8 @@ html[data-theme="bride"]{ --page-glow:transparent; }
   background:radial-gradient(circle, rgba(255,240,200,.95), rgba(255,210,120,.45) 35%, transparent 70%); opacity:0; pointer-events:none; }
 .envelope.is-opening .seal-flash{ animation:sealflash .7s ease-out forwards; }
 @keyframes sealflash{ 0%{ opacity:0; transform:translate(-50%,-50%) scale(.2); } 25%{ opacity:1; } 100%{ opacity:0; transform:translate(-50%,-50%) scale(1.6); } }
+/* English date: tall lining numerals for the big day */
+html[lang="en"] .db-day b{ font-family:"Cormorant Garamond",serif; font-weight:600; font-variant-numeric:lining-nums; font-feature-settings:"lnum" 1;
+  font-size:clamp(66px,20vw,82px); line-height:1; letter-spacing:-.02em; }
+html[lang="en"] .db-day small{ font-family:"Cormorant Garamond",serif; font-style:italic; font-size:clamp(18px,5vw,22px); line-height:1; margin:.2em 0 0 3px; }
+html[lang="en"] .db-year{ font-variant-numeric:lining-nums; font-feature-settings:"lnum" 1; }
